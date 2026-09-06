@@ -280,15 +280,23 @@ button { font-family: inherit; }
 .hero-trust p { margin: 0; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); }
 .hero-trust strong { color: #fff; }
 .avatars { display: flex; }
-.avatars span, .avatar {
+.avatars img {
   width: 34px; height: 34px;
   border-radius: 50%;
   border: 2px solid var(--color-primary);
   display: inline-block;
-  background: hsl(calc(205 + var(--i, 0) * 15), 65%, 50%);
+  object-fit: cover;
   margin-left: -10px;
 }
-.avatars span:first-child { margin-left: 0; }
+.avatars img:first-child { margin-left: 0; }
+
+.avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--color-surface);
+  display: inline-block;
+  background: hsl(calc(205 + var(--i, 0) * 15), 65%, 50%);
+}
 
 /* Laptop mockup */
 .laptop-mockup { position: relative; max-width: 960px; margin: 64px auto 0; }
@@ -638,7 +646,11 @@ button { font-family: inherit; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 720px) {
+/* Header nav collapses to a hamburger menu earlier than the content
+   breakpoints below: "The Next Growth" + 4 nav links + CTA button
+   start colliding around ~850px, well before the 720px content
+   breakpoint. */
+@media (max-width: 900px) {
   .main-nav {
     position: absolute;
     top: 76px;
@@ -665,6 +677,9 @@ button { font-family: inherit; }
   }
   .header-actions .btn-sm { display: none; }
   .nav-toggle { display: flex; }
+}
+
+@media (max-width: 720px) {
   .grid-3 { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -677,6 +692,7 @@ button { font-family: inherit; }
   .laptop-nav-cta { display: none; }
   .laptop-body { padding: 16px; }
   .dash-card-main { padding: 20px; }
+  .btn { white-space: normal; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
